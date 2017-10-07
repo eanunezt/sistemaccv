@@ -1,0 +1,104 @@
+<div class="btn-group">
+	<button type="button" class="btn btn-default" ng-click="nuevo()">Nuevo Importacion</button>
+	<button type="button" class="btn btn-default" ng-click="cancelar()">Listar Importacion</button>
+</div>
+				
+<div class="panel panel-primary" ng-hide="panelEditar">
+    <div class="panel-heading">Parametrizaci&oacute;n de Importacion</div>
+    <div class="panel-body">
+        <table class="resultados table table-striped">
+            <tr>
+                				<th>
+                                    idProveedor
+                                </th>				<th>
+                                    idVehiculo
+                                </th>				<th>
+                                    cantidad
+                                </th>				<th>
+                                    fecha
+                                </th>
+				
+				<th>
+                    <input class="form-control" ng-model="q"  placeholder="Buscar"/>
+                </th>
+            </tr>
+            <tr dir-paginate="row in lista|filter: q|itemsPerPage:10">
+                		<td>{{row.idProveedor}}</td>
+                
+                		<td>{{row.idVehiculo}}</td>
+                
+                		<td>{{row.cantidad}}</td>
+                
+                		<td>{{row.fecha}}</td>
+                
+                
+				
+				<td class="row">
+                    <button type="button" class="btn btn-default" ng-click="editar(row)">
+                        <span class="glyphicon glyphicon-pencil"></span>Editar
+                    </button>
+					<button type="button" class="btn btn-default" ng-click="eliminar(row)">
+                        <span class="glyphicon glyphicon-remove"></span>Eliminar
+                    </button>
+                </td>
+            </tr>
+        </table>
+		<div dir-pagination-controls></div>
+		<br/>
+    </div>
+</div>
+
+<div class="panel panel-primary" ng-show="panelEditar">
+    <div class="panel-heading">Parametrizaci&oacute;n de Importacion</div>
+    <div class="panel-body">
+        <form role="form" id="formularioEditar">
+            				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.idProveedor?'error':''">
+                                    <label for="idProveedor">idProveedor</label>
+                                    <input id="idProveedor" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.idProveedor"
+            							   placeholder="idProveedor"/>
+                                    <div ng-show="errores.idProveedor">{{errores.idProveedor}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.idVehiculo?'error':''">
+                                    <label for="idVehiculo">idVehiculo</label>
+                                    <input id="idVehiculo" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.idVehiculo"
+            							   placeholder="idVehiculo"/>
+                                    <div ng-show="errores.idVehiculo">{{errores.idVehiculo}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.cantidad?'error':''">
+                                    <label for="cantidad">cantidad</label>
+                                    <input id="cantidad" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.cantidad"
+            							   placeholder="cantidad"/>
+                                    <div ng-show="errores.cantidad">{{errores.cantidad}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.fecha?'error':''">
+                                    <label for="fecha">fecha</label>
+                                    <input id="fecha" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.fecha"
+            							   placeholder="fecha"/>
+                                    <div ng-show="errores.fecha">{{errores.fecha}}</div>
+                                </div>
+                            </div> 
+			
+			<div class="btn-group">
+				<button type="button" class="btn btn-default" ng-click="guardar()">Aceptar</button>
+                <button type="button" class="btn btn-default" ng-click="cancelar()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+

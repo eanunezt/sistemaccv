@@ -1,0 +1,184 @@
+<div class="btn-group">
+	<button type="button" class="btn btn-default" ng-click="nuevo()">Nuevo Garantia</button>
+	<button type="button" class="btn btn-default" ng-click="cancelar()">Listar Garantia</button>
+</div>
+				
+<div class="panel panel-primary" ng-hide="panelEditar">
+    <div class="panel-heading">Parametrizaci&oacute;n de Garantia</div>
+    <div class="panel-body">
+        <table class="resultados table table-striped">
+            <tr>
+                				<th>
+                                    idCliente
+                                </th>				<th>
+                                    fechaVenta
+                                </th>				<th>
+                                    motivoGarantia
+                                </th>				<th>
+                                    solucionGarantia
+                                </th>				<th>
+                                    fechaGarantia
+                                </th>				<th>
+                                    fechaSolucion
+                                </th>				<th>
+                                    idEmpleado
+                                </th>				<th>
+                                    estado
+                                </th>
+				
+				<th>
+                    <input class="form-control" ng-model="q"  placeholder="Buscar"/>
+                </th>
+            </tr>
+            <tr dir-paginate="row in lista|filter: q|itemsPerPage:10">
+                		<td>{{row.idCliente}}</td>
+                
+                		<td>{{row.fechaVenta| date: 'dd/MM/yyyy'}}</td>
+                
+                		<td>{{row.motivoGarantia}}</td>
+                
+                		<td>{{row.solucionGarantia}}</td>
+                
+                		<td>{{row.fechaGarantia| date: 'dd/MM/yyyy'}}</td>
+                
+                		<td>{{row.fechaSolucion| date: 'dd/MM/yyyy'}}</td>
+                
+                		<td>{{row.idEmpleado}}</td>
+                
+                		<td>{{row.estado}}</td>
+                
+                
+				
+				<td class="row">
+                    <button type="button" class="btn btn-default" ng-click="editar(row)">
+                        <span class="glyphicon glyphicon-pencil"></span>Editar
+                    </button>
+					<button type="button" class="btn btn-default" ng-click="eliminar(row)">
+                        <span class="glyphicon glyphicon-remove"></span>Eliminar
+                    </button>
+                </td>
+            </tr>
+        </table>
+		<div dir-pagination-controls></div>
+		<br/>
+    </div>
+</div>
+
+<div class="panel panel-primary" ng-show="panelEditar">
+    <div class="panel-heading">Parametrizaci&oacute;n de Garantia</div>
+    <div class="panel-body">
+        <form role="form" id="formularioEditar">
+            				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.idCliente?'error':''">
+                                    <label for="idCliente">idCliente</label>
+                                    <input id="idCliente" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.idCliente"
+            							   placeholder="idCliente"/>
+                                    <div ng-show="errores.idCliente">{{errores.idCliente}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.fechaVenta?'error':''">
+                                    <label for="fechaVenta">fechaVenta</label>
+            						<div class="input-group">
+            	                        <input id="fechaVenta" 
+            	                               class="form-control datepicker" 
+            	                               type="text" 
+            	                               ng-model="datosFormulario.fechaVenta"/>
+            							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                	</div>
+                                    <script>
+                                                $('#fechaVenta').datepicker({format: 'dd/mm/yyyy', language: "es"})
+            										.on('changeDate', function (ev) {
+                                                    	dp_fechaVenta.hide();
+                                                	}).data('datepicker');
+                                    </script>
+                                    <div ng-show="errores.fechaVenta">{{errores.fechaVenta}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.motivoGarantia?'error':''">
+                                    <label for="motivoGarantia">motivoGarantia</label>
+                                    <input id="motivoGarantia" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.motivoGarantia"
+            							   placeholder="motivoGarantia"/>
+                                    <div ng-show="errores.motivoGarantia">{{errores.motivoGarantia}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.solucionGarantia?'error':''">
+                                    <label for="solucionGarantia">solucionGarantia</label>
+                                    <input id="solucionGarantia" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.solucionGarantia"
+            							   placeholder="solucionGarantia"/>
+                                    <div ng-show="errores.solucionGarantia">{{errores.solucionGarantia}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.fechaGarantia?'error':''">
+                                    <label for="fechaGarantia">fechaGarantia</label>
+            						<div class="input-group">
+            	                        <input id="fechaGarantia" 
+            	                               class="form-control datepicker" 
+            	                               type="text" 
+            	                               ng-model="datosFormulario.fechaGarantia"/>
+            							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                	</div>
+                                    <script>
+                                                $('#fechaGarantia').datepicker({format: 'dd/mm/yyyy', language: "es"})
+            										.on('changeDate', function (ev) {
+                                                    	dp_fechaGarantia.hide();
+                                                	}).data('datepicker');
+                                    </script>
+                                    <div ng-show="errores.fechaGarantia">{{errores.fechaGarantia}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.fechaSolucion?'error':''">
+                                    <label for="fechaSolucion">fechaSolucion</label>
+            						<div class="input-group">
+            	                        <input id="fechaSolucion" 
+            	                               class="form-control datepicker" 
+            	                               type="text" 
+            	                               ng-model="datosFormulario.fechaSolucion"/>
+            							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                	</div>
+                                    <script>
+                                                $('#fechaSolucion').datepicker({format: 'dd/mm/yyyy', language: "es"})
+            										.on('changeDate', function (ev) {
+                                                    	dp_fechaSolucion.hide();
+                                                	}).data('datepicker');
+                                    </script>
+                                    <div ng-show="errores.fechaSolucion">{{errores.fechaSolucion}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.idEmpleado?'error':''">
+                                    <label for="idEmpleado">idEmpleado</label>
+                                    <input id="idEmpleado" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.idEmpleado"
+            							   placeholder="idEmpleado"/>
+                                    <div ng-show="errores.idEmpleado">{{errores.idEmpleado}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.estado?'error':''">
+                                    <label for="estado">estado</label>
+                                    <input id="estado" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.estado"
+            							   placeholder="estado"/>
+                                    <div ng-show="errores.estado">{{errores.estado}}</div>
+                                </div>
+                            </div> 
+			
+			<div class="btn-group">
+				<button type="button" class="btn btn-default" ng-click="guardar()">Aceptar</button>
+                <button type="button" class="btn btn-default" ng-click="cancelar()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+

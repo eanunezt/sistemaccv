@@ -1,0 +1,118 @@
+<div class="btn-group">
+	<button type="button" class="btn btn-default" ng-click="nuevo()">Nuevo Empleado</button>
+	<button type="button" class="btn btn-default" ng-click="cancelar()">Listar Empleado</button>
+</div>
+				
+<div class="panel panel-primary" ng-hide="panelEditar">
+    <div class="panel-heading">Parametrizaci&oacute;n de Empleado</div>
+    <div class="panel-body">
+        <table class="resultados table table-striped">
+            <tr>
+                				<th>
+                                    nombresCompletos
+                                </th>				<th>
+                                    direccion
+                                </th>				<th>
+                                    ciudad
+                                </th>				<th>
+                                    telefono
+                                </th>				<th>
+                                    correoElect
+                                </th>
+				
+				<th>
+                    <input class="form-control" ng-model="q"  placeholder="Buscar"/>
+                </th>
+            </tr>
+            <tr dir-paginate="row in lista|filter: q|itemsPerPage:10">
+                		<td>{{row.nombresCompletos}}</td>
+                
+                		<td>{{row.direccion}}</td>
+                
+                		<td>{{row.ciudad}}</td>
+                
+                		<td>{{row.telefono}}</td>
+                
+                		<td>{{row.correoElect}}</td>
+                
+                
+				
+				<td class="row">
+                    <button type="button" class="btn btn-default" ng-click="editar(row)">
+                        <span class="glyphicon glyphicon-pencil"></span>Editar
+                    </button>
+					<button type="button" class="btn btn-default" ng-click="eliminar(row)">
+                        <span class="glyphicon glyphicon-remove"></span>Eliminar
+                    </button>
+                </td>
+            </tr>
+        </table>
+		<div dir-pagination-controls></div>
+		<br/>
+    </div>
+</div>
+
+<div class="panel panel-primary" ng-show="panelEditar">
+    <div class="panel-heading">Parametrizaci&oacute;n de Empleado</div>
+    <div class="panel-body">
+        <form role="form" id="formularioEditar">
+            				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.nombresCompletos?'error':''">
+                                    <label for="nombresCompletos">nombresCompletos</label>
+                                    <input id="nombresCompletos" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.nombresCompletos"
+            							   placeholder="nombresCompletos"/>
+                                    <div ng-show="errores.nombresCompletos">{{errores.nombresCompletos}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.direccion?'error':''">
+                                    <label for="direccion">direccion</label>
+                                    <input id="direccion" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.direccion"
+            							   placeholder="direccion"/>
+                                    <div ng-show="errores.direccion">{{errores.direccion}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.ciudad?'error':''">
+                                    <label for="ciudad">ciudad</label>
+                                    <input id="ciudad" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.ciudad"
+            							   placeholder="ciudad"/>
+                                    <div ng-show="errores.ciudad">{{errores.ciudad}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.telefono?'error':''">
+                                    <label for="telefono">telefono</label>
+                                    <input id="telefono" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.telefono"
+            							   placeholder="telefono"/>
+                                    <div ng-show="errores.telefono">{{errores.telefono}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.correoElect?'error':''">
+                                    <label for="correoElect">correoElect</label>
+                                    <input id="correoElect" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.correoElect"
+            							   placeholder="correoElect"/>
+                                    <div ng-show="errores.correoElect">{{errores.correoElect}}</div>
+                                </div>
+                            </div> 
+			
+			<div class="btn-group">
+				<button type="button" class="btn btn-default" ng-click="guardar()">Aceptar</button>
+                <button type="button" class="btn btn-default" ng-click="cancelar()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+

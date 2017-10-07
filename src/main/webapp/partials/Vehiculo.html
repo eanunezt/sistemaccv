@@ -1,0 +1,196 @@
+<div class="btn-group">
+	<button type="button" class="btn btn-default" ng-click="nuevo()">Nuevo Vehiculo</button>
+	<button type="button" class="btn btn-default" ng-click="cancelar()">Listar Vehiculo</button>
+</div>
+				
+<div class="panel panel-primary" ng-hide="panelEditar">
+    <div class="panel-heading">Parametrizaci&oacute;n de Vehiculo</div>
+    <div class="panel-body">
+        <table class="resultados table table-striped">
+            <tr>
+                				<th>
+                                    numMotor
+                                </th>				<th>
+                                    numChasis
+                                </th>				<th>
+                                    marca
+                                </th>				<th>
+                                    modelo
+                                </th>				<th>
+                                    annio
+                                </th>				<th>
+                                    cilindraje
+                                </th>				<th>
+                                    caja
+                                </th>				<th>
+                                    color
+                                </th>				<th>
+                                    precio
+                                </th>				<th>
+                                    fechaIngreso
+                                </th>
+				
+				<th>
+                    <input class="form-control" ng-model="q"  placeholder="Buscar"/>
+                </th>
+            </tr>
+            <tr dir-paginate="row in lista|filter: q|itemsPerPage:10">
+                		<td>{{row.numMotor}}</td>
+                
+                		<td>{{row.numChasis}}</td>
+                
+                		<td>{{row.marca}}</td>
+                
+                		<td>{{row.modelo}}</td>
+                
+                		<td>{{row.annio}}</td>
+                
+                		<td>{{row.cilindraje}}</td>
+                
+                		<td>{{row.caja}}</td>
+                
+                		<td>{{row.color}}</td>
+                
+                		<td>{{row.precio}}</td>
+                
+                		<td>{{row.fechaIngreso| date: 'dd/MM/yyyy'}}</td>
+                
+                
+				
+				<td class="row">
+                    <button type="button" class="btn btn-default" ng-click="editar(row)">
+                        <span class="glyphicon glyphicon-pencil"></span>Editar
+                    </button>
+					<button type="button" class="btn btn-default" ng-click="eliminar(row)">
+                        <span class="glyphicon glyphicon-remove"></span>Eliminar
+                    </button>
+                </td>
+            </tr>
+        </table>
+		<div dir-pagination-controls></div>
+		<br/>
+    </div>
+</div>
+
+<div class="panel panel-primary" ng-show="panelEditar">
+    <div class="panel-heading">Parametrizaci&oacute;n de Vehiculo</div>
+    <div class="panel-body">
+        <form role="form" id="formularioEditar">
+            				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.numMotor?'error':''">
+                                    <label for="numMotor">numMotor</label>
+                                    <input id="numMotor" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.numMotor"
+            							   placeholder="numMotor"/>
+                                    <div ng-show="errores.numMotor">{{errores.numMotor}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.numChasis?'error':''">
+                                    <label for="numChasis">numChasis</label>
+                                    <input id="numChasis" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.numChasis"
+            							   placeholder="numChasis"/>
+                                    <div ng-show="errores.numChasis">{{errores.numChasis}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.marca?'error':''">
+                                    <label for="marca">marca</label>
+                                    <input id="marca" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.marca"
+            							   placeholder="marca"/>
+                                    <div ng-show="errores.marca">{{errores.marca}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.modelo?'error':''">
+                                    <label for="modelo">modelo</label>
+                                    <input id="modelo" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.modelo"
+            							   placeholder="modelo"/>
+                                    <div ng-show="errores.modelo">{{errores.modelo}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.annio?'error':''">
+                                    <label for="annio">annio</label>
+                                    <input id="annio" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.annio"
+            							   placeholder="annio"/>
+                                    <div ng-show="errores.annio">{{errores.annio}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.cilindraje?'error':''">
+                                    <label for="cilindraje">cilindraje</label>
+                                    <input id="cilindraje" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.cilindraje"
+            							   placeholder="cilindraje"/>
+                                    <div ng-show="errores.cilindraje">{{errores.cilindraje}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.caja?'error':''">
+                                    <label for="caja">caja</label>
+                                    <input id="caja" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.caja"
+            							   placeholder="caja"/>
+                                    <div ng-show="errores.caja">{{errores.caja}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.color?'error':''">
+                                    <label for="color">color</label>
+                                    <input id="color" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.color"
+            							   placeholder="color"/>
+                                    <div ng-show="errores.color">{{errores.color}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.precio?'error':''">
+                                    <label for="precio">precio</label>
+                                    <input id="precio" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.precio"
+            							   placeholder="precio"/>
+                                    <div ng-show="errores.precio">{{errores.precio}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.fechaIngreso?'error':''">
+                                    <label for="fechaIngreso">fechaIngreso</label>
+            						<div class="input-group">
+            	                        <input id="fechaIngreso" 
+            	                               class="form-control datepicker" 
+            	                               type="text" 
+            	                               ng-model="datosFormulario.fechaIngreso"/>
+            							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                	</div>
+                                    <script>
+                                                $('#fechaIngreso').datepicker({format: 'dd/mm/yyyy', language: "es"})
+            										.on('changeDate', function (ev) {
+                                                    	dp_fechaIngreso.hide();
+                                                	}).data('datepicker');
+                                    </script>
+                                    <div ng-show="errores.fechaIngreso">{{errores.fechaIngreso}}</div>
+                                </div>
+                            </div> 
+			
+			<div class="btn-group">
+				<button type="button" class="btn btn-default" ng-click="guardar()">Aceptar</button>
+                <button type="button" class="btn btn-default" ng-click="cancelar()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+

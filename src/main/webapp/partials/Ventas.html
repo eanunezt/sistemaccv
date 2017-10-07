@@ -1,0 +1,140 @@
+<div class="btn-group">
+	<button type="button" class="btn btn-default" ng-click="nuevo()">Nuevo Ventas</button>
+	<button type="button" class="btn btn-default" ng-click="cancelar()">Listar Ventas</button>
+</div>
+				
+<div class="panel panel-primary" ng-hide="panelEditar">
+    <div class="panel-heading">Parametrizaci&oacute;n de Ventas</div>
+    <div class="panel-body">
+        <table class="resultados table table-striped">
+            <tr>
+                				<th>
+                                    idArticulo
+                                </th>				<th>
+                                    idCliente
+                                </th>				<th>
+                                    idEmpleado
+                                </th>				<th>
+                                    fechaVenta
+                                </th>				<th>
+                                    valorVenta
+                                </th>				<th>
+                                    cantidad
+                                </th>
+				
+				<th>
+                    <input class="form-control" ng-model="q"  placeholder="Buscar"/>
+                </th>
+            </tr>
+            <tr dir-paginate="row in lista|filter: q|itemsPerPage:10">
+                		<td>{{row.idArticulo}}</td>
+                
+                		<td>{{row.idCliente}}</td>
+                
+                		<td>{{row.idEmpleado}}</td>
+                
+                		<td>{{row.fechaVenta| date: 'dd/MM/yyyy'}}</td>
+                
+                		<td>{{row.valorVenta}}</td>
+                
+                		<td>{{row.cantidad}}</td>
+                
+                
+				
+				<td class="row">
+                    <button type="button" class="btn btn-default" ng-click="editar(row)">
+                        <span class="glyphicon glyphicon-pencil"></span>Editar
+                    </button>
+					<button type="button" class="btn btn-default" ng-click="eliminar(row)">
+                        <span class="glyphicon glyphicon-remove"></span>Eliminar
+                    </button>
+                </td>
+            </tr>
+        </table>
+		<div dir-pagination-controls></div>
+		<br/>
+    </div>
+</div>
+
+<div class="panel panel-primary" ng-show="panelEditar">
+    <div class="panel-heading">Parametrizaci&oacute;n de Ventas</div>
+    <div class="panel-body">
+        <form role="form" id="formularioEditar">
+            				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.idArticulo?'error':''">
+                                    <label for="idArticulo">idArticulo</label>
+                                    <input id="idArticulo" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.idArticulo"
+            							   placeholder="idArticulo"/>
+                                    <div ng-show="errores.idArticulo">{{errores.idArticulo}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.idCliente?'error':''">
+                                    <label for="idCliente">idCliente</label>
+                                    <input id="idCliente" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.idCliente"
+            							   placeholder="idCliente"/>
+                                    <div ng-show="errores.idCliente">{{errores.idCliente}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.idEmpleado?'error':''">
+                                    <label for="idEmpleado">idEmpleado</label>
+                                    <input id="idEmpleado" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.idEmpleado"
+            							   placeholder="idEmpleado"/>
+                                    <div ng-show="errores.idEmpleado">{{errores.idEmpleado}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.fechaVenta?'error':''">
+                                    <label for="fechaVenta">fechaVenta</label>
+            						<div class="input-group">
+            	                        <input id="fechaVenta" 
+            	                               class="form-control datepicker" 
+            	                               type="text" 
+            	                               ng-model="datosFormulario.fechaVenta"/>
+            							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                	</div>
+                                    <script>
+                                                $('#fechaVenta').datepicker({format: 'dd/mm/yyyy', language: "es"})
+            										.on('changeDate', function (ev) {
+                                                    	dp_fechaVenta.hide();
+                                                	}).data('datepicker');
+                                    </script>
+                                    <div ng-show="errores.fechaVenta">{{errores.fechaVenta}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.valorVenta?'error':''">
+                                    <label for="valorVenta">valorVenta</label>
+                                    <input id="valorVenta" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.valorVenta"
+            							   placeholder="valorVenta"/>
+                                    <div ng-show="errores.valorVenta">{{errores.valorVenta}}</div>
+                                </div>
+                            </div>				<div class="row">
+                                <div class="form-group col-md-6" ng-class="errores.cantidad?'error':''">
+                                    <label for="cantidad">cantidad</label>
+                                    <input id="cantidad" 
+                                           class="form-control" 
+            							   type="text"
+                                           ng-model="datosFormulario.cantidad"
+            							   placeholder="cantidad"/>
+                                    <div ng-show="errores.cantidad">{{errores.cantidad}}</div>
+                                </div>
+                            </div> 
+			
+			<div class="btn-group">
+				<button type="button" class="btn btn-default" ng-click="guardar()">Aceptar</button>
+                <button type="button" class="btn btn-default" ng-click="cancelar()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
